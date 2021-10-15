@@ -104,6 +104,8 @@ export default {
         ],
         // https://github.com/nuxt-community/markdownit-module
         '@nuxtjs/markdownit',
+        // https://github.com/nuxt-community/redirect-module
+        '@nuxtjs/redirect-module',
     ],
 
     i18n: {
@@ -136,6 +138,20 @@ export default {
         linkify: true,
         breaks: true,
     },
+
+    // for adding trailing slash to URL
+    redirect: [
+        {
+            from: '^[\\w\\.\\/]*(?<!\\/)(\\?.*\\=.*)*$',
+            to: (from, req) => {
+                const matches = req.url.match(/^.*(\?.*)$/)
+                if (matches.length > 1) {
+                    return matches[0].replace(matches[1], '') + '/' + matches[1]
+                }
+                return matches[0]
+            },
+        },
+    ],
 
     publicRuntimeConfig: {
         gtm: {
