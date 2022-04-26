@@ -48,7 +48,8 @@
         </div>
 
         <i18n-page-wrapper>
-            <div class="sponsor-section">
+            <intro :is-bulleted="isBulleted"></intro>
+            <div class="sponsor-section section-wrapper">
                 <core-h2
                     :title="$t('sponsorList')"
                     :is-bulleted="isBulleted"
@@ -93,6 +94,7 @@ import CoreH2 from '~/components/core/titles/H2'
 import SponsorCard from '~/components/sponsors/SponsorCard'
 import SponsorModal from '~/components/sponsors/SponsorModal'
 import SponsorCardCollection from '~/components/sponsors/SponsorCardCollection'
+import Intro from '~/components/intro/intro'
 
 export default {
     i18n,
@@ -103,6 +105,7 @@ export default {
         SponsorCard,
         SponsorModal,
         SponsorCardCollection,
+        Intro,
     },
     data() {
         return {
@@ -184,8 +187,9 @@ export default {
     color: #c386ae;
 }
 
-.sponsor-section {
+.section-wrapper {
     @apply pt-12 mx-4 lg:mx-auto lg:w-9/12;
+    max-width: 1040px;
 }
 
 .text-button-wrapper {
